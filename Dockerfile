@@ -15,7 +15,7 @@ RUN git clone -b readout_position_regularizer https://github.com/KonstantinWille
     git clone https://github.com/sinzlab/nnfabrik &&\
     git clone -b konsti_monkey_experiments https://github.com/sinzlab/mei &&\
     git clone https://github.com/sinzlab/data_port &&\
-    git clone https://github.com/${GITHUB_USER}/nndichromacy &&\
+    git clone https://github.com/sinzlab/nndichromacy &&\
     git clone https://github.com/sinzlab/nexport
 
 FROM ${BASE_IMAGE}
@@ -24,11 +24,12 @@ ADD . /src/nnidentify
 
 RUN pip install -e /src/neuralpredictors &&\
     pip install -e /src/nnfabrik &&\
-    pip install -e /src/nnidentify &&\
-    pip install -e /src/nnidentify/lib/nnvision &&\
-    pip install -e /src/nnidentify/lib/insilico-stimuli &&\
     pip install -e /src/nndichromacy &&\
     pip install -e /src/mei &&\
     pip install -e /src/data_port &&\
     pip install -e /src/nexport
+
+RUN pip install -e /src/nnidentify &&\
+    pip install -e /src/nnidentify/lib/nnvision &&\
+    pip install -e /src/nnidentify/lib/insilico-stimuli
 
