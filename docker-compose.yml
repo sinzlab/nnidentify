@@ -23,7 +23,7 @@ services:
   notebook_server:
     <<: *common
     volumes:
-      - .:/src/nnvidentify
+      - .:/src/nnidentify
       - ./notebooks:/notebooks
       - /var/sinz-shared:/data
     ports:
