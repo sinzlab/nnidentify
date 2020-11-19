@@ -23,7 +23,7 @@ services:
   notebook_server:
     <<: *common
     volumes:
-      - .:/src/nnvision
+      - .:/src/nnvidentify
       - ./notebooks:/notebooks
       - /var/sinz-shared:/data
     ports:
@@ -32,7 +32,7 @@ services:
   notebook_gpu_server:
     <<: *common
     volumes:
-      - .:/src/nnvision
+      - .:/src/nnidentify
       - ./notebooks:/notebooks
       - /var/lib/nova/sinz-shared:/data
     ports:
