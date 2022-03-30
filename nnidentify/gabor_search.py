@@ -1,6 +1,5 @@
 import numpy as np
 
-import insilico_stimuli
 from insilico_stimuli.stimuli import *
 from insilico_stimuli.parameters import *
 
@@ -9,6 +8,8 @@ def find_optimal_gabor_bruteforce(dataloaders, model, method_config):
     batch = next(iter(dataloaders['test'][method_config['data_key']]))
     _, _, w, h = batch[0].shape
 
+    GaborSet(method_config['gabor_config'])
+
     # Finite Set
     canvas_size = [w, h]
     sizes = FiniteParameter([float(val) for val in range(
@@ -16,6 +17,10 @@ def find_optimal_gabor_bruteforce(dataloaders, model, method_config):
                             method_config['sizes']['high'])]
                             [::method_config['sizes']['step']]
                             )
+
+    method_config = {
+        "sizes": FiniteParameter([float(val) for val in range(0, 10)][::1])
+    }
 
     spatial_frequencies = FiniteParameter([float(val) for val in np.linspace(
                             method_config['spatial_frequencies']['low'],
@@ -66,6 +71,4 @@ def find_optimal_gabor_bruteforce(dataloaders, model, method_config):
         batch_size=method_config['batch_size']
     )
 
-    output = {}
-
-    return best_params, values, output
+    return best_params, values
